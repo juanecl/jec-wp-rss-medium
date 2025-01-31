@@ -1,0 +1,56 @@
+/* 
+ * Custom styles for the Medium Integration Widget
+ * This file contains styles to ensure the widget matches the theme and is visually appealing.
+ */
+
+/* Widget Container */
+.medium-widget {
+    background-color: #f9f9f9;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 20px 0;
+}
+
+/* Widget Title */
+.medium-widget h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Post List */
+.medium-widget ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Individual Post Item */
+.medium-widget li {
+    margin-bottom: 10px;
+}
+
+/* Post Title Link */
+.medium-widget a.post-title {
+    text-decoration: none;
+    color: #0077cc;
+    font-weight: bold;
+}
+
+/* Post Title Link Hover */
+.medium-widget a.post-title:hover {
+    text-decoration: underline;
+}
+
+/* Post Date */
+.medium-widget .post-date {
+    font-size: 0.9em;
+    color: #999;
+}
+
+/* Post Excerpt */
+.medium-widget .post-excerpt {
+    font-size: 0.95em;
+    color: #555;
+}
