@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class Medium_RSS_Fetcher {
     private $feed_url;
 
@@ -36,7 +40,6 @@ class Medium_RSS_Fetcher {
             $namespaces = $item->getNameSpaces(true);
             $content_encoded = $item->children($namespaces['content'])->encoded;
             $content = (string) $content_encoded;
-            error_log("content raw " . $content);
             $image = $this->extract_image($content);
             $description = $this->create_description($content);
 
@@ -68,6 +71,6 @@ class Medium_RSS_Fetcher {
     private function create_description($content) {
         $content_without_figure = preg_replace('/<figure.*?>.*?<\/figure>/is', '', $content);
         $excerpt = strip_tags($content_without_figure);
-        return mb_strimwidth($excerpt, 0, 200, '...');
+        return mb_strimwidth($excerpt, 0, 200, __('...', 'jec-medium'));
     }
 }

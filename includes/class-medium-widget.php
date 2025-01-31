@@ -1,10 +1,14 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class MediumWidget extends WP_Widget {
     public function __construct() {
         parent::__construct(
             'medium_widget',
-            __('Medium Latest Posts', 'text_domain'),
-            ['description' => __('Displays the latest posts from a Medium profile.', 'text_domain')]
+            __('Medium Latest Posts', 'jec-medium'),
+            ['description' => __('Displays the latest posts from a Medium profile.', 'jec-medium')]
         );
     }
 
@@ -18,14 +22,18 @@ class MediumWidget extends WP_Widget {
             echo $args['before_title'] . apply_filters('widget_title', $instance['title']) . $args['after_title'];
         }
 
-        include(plugin_dir_path(__FILE__) . '../templates/medium-widget-template.php');
+        if (!empty($posts)) {
+            include(plugin_dir_path(__FILE__) . '../templates/medium-feed-template.php');
+        } else {
+            echo '<p>' . __('No posts found.', 'jec-medium') . '</p>';
+        }
 
         echo $args['after_widget'];
     }
 
     public function form($instance) {
-        $title = !empty($instance['title']) ? $instance['title'] : __('Latest Medium Posts', 'text_domain');
-        echo '<p><label for="' . esc_attr($this->get_field_id('title')) . '">' . __('Title:', 'text_domain') . '</label><input class="widefat" id="' . esc_attr($this->get_field_id('title')) . '" name="' . esc_attr($this->get_field_name('title')) . '" type="text" value="' . esc_attr($title) . '"></p>';
+        $title = !empty($instance['title']) ? $instance['title'] : __('Latest Medium Posts', 'jec-medium');
+        echo '<p><label for="' . esc_attr($this->get_field_id('title')) . '">' . __('Title:', 'jec-medium') . '</label><input class="widefat" id="' . esc_attr($this->get_field_id('title')) . '" name="' . esc_attr($this->get_field_name('title')) . '" type="text" value="' . esc_attr($title) . '"></p>';
     }
 
     public function update($new_instance, $old_instance) {

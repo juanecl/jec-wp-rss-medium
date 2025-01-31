@@ -1,0 +1,70 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: jec-medium\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-31 15:44+0000\n"
+"PO-Revision-Date: 2025-01-31 16:49+0000\n"
+"Last-Translator: \n"
+"Language-Team: Español\n"
+"Language: es_ES\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.7.1; wp-6.7.1\n"
+"X-Domain: jec-medium"
+
+#: includes/class-medium-rss-fetcher.php:74
+msgid "..."
+msgstr "..."
+
+#. Description of the plugin
+msgid "A plugin to display the latest posts from Medium using RSS feeds."
+msgstr ""
+"Un plugin para desplegar los últimos artículos de Medium a través de un feed "
+"RSS."
+
+#: templates/medium-feed-template.php:7
+msgid "Articles"
+msgstr "Artículos"
+
+#: includes/class-medium-widget.php:11
+msgid "Displays the latest posts from a Medium profile."
+msgstr "Despliega los últimos artículos"
+
+#. Name of the plugin
+msgid "jec-medium"
+msgstr "jec-medium"
+
+#. Author of the plugin
+msgid "Juan E. Chomon Del Campo"
+msgstr "Juan E. Chomon Del Campo"
+
+#: includes/class-medium-widget.php:35
+msgid "Latest Medium Posts"
+msgstr "Últimos artículos"
+
+#: index.php:62
+msgid "Medium Feed URL"
+msgstr "URL del feed de Medium"
+
+#: includes/class-medium-widget.php:10
+msgid "Medium Latest Posts"
+msgstr "Últimos artículos"
+
+#: templates/medium-feed-template.php:30
+msgid "Next"
+msgstr "Siguiente"
+
+#: index.php:81 includes/class-medium-widget.php:28
+msgid "No posts found."
+msgstr "No se han encontrado artículos."
+
+#: templates/medium-feed-template.php:26
+msgid "Previous"
+msgstr "Anterior"
+
+#: includes/class-medium-widget.php:36
+msgid "Title:"
+msgstr "Título:"
