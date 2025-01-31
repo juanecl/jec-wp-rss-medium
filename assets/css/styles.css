@@ -54,3 +54,30 @@
     font-size: 0.95em;
     color: #555;
 }
+
+.wrap {
+    box-shadow: 1px 1px 15px inset rgba(0, 0, 0, .3);
+    margin-right: -12px;
+    margin-left: -12px;
+}
+
+.card {
+    overflow: hidden;
+}
+
+.custom-card {
+    max-width: 75%;
+    margin: 0 auto;
+    border: 3px solid var(--bs-secondary);
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.3);
+}
+
+.card-img-top-wrapper {
+    height: 450px;
+    overflow: hidden;
+}
+
+.card-img-top-wrapper img {
+    height: 100%;
+    object-fit: cover;
+}
