@@ -81,7 +81,8 @@ class JEC_Medium {
 
         ob_start();
         ?>
-        <div id="mediumCarousel" class="carousel slide" data-bs-ride="carousel">
+        <h2 class="text-center mb-4"><?php _e('Articles', 'jec-medium'); ?></h2>
+        <div id="mediumCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <?php foreach ($posts as $index => $post): ?>
                     <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">
