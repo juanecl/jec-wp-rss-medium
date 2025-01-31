@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: jec-medium\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-31 15:44+0000\n"
-"PO-Revision-Date: 2025-01-31 16:49+0000\n"
+"PO-Revision-Date: 2025-01-31 16:59+0000\n"
 "Last-Translator: \n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -33,7 +33,7 @@ msgstr "Displays the latest posts."
 
 #. Name of the plugin
 msgid "jec-medium"
-msgstr "jec-medium"
+msgstr "JEC Medium RSS Feed"
 
 #. Author of the plugin
 msgid "Juan E. Chomon Del Campo"
