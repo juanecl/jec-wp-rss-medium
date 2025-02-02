@@ -55,29 +55,66 @@
     color: #555;
 }
 
+/* General Wrapper */
 .wrap {
     box-shadow: 1px 1px 15px inset rgba(0, 0, 0, .3);
     margin-right: -12px;
     margin-left: -12px;
 }
 
-.card {
+/* Carousel Item Card */
+.carousel-item .card {
+    overflow: hidden;
+    max-height: 500px;
+}
+
+
+/* Card Image Wrapper */
+.card-img-top-wrapper {
+    position: relative;
+    height: 100%;
     overflow: hidden;
 }
 
+/* Card Image */
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Custom Card */
 .custom-card {
+    position: relative;
     max-width: 75%;
     margin: 0 auto;
     border: 3px solid var(--bs-secondary);
     box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.3);
-}
-
-.card-img-top-wrapper {
-    height: 450px;
     overflow: hidden;
+    background-size: cover;
+    background-position: center;
 }
 
-.card-img-top-wrapper img {
-    height: 100%;
-    object-fit: cover;
+/* Card Body */
+.carousel-item .card-body {
+    min-height: 40%;
+    width: 100%;
+    color: white;
+    padding: 20px;
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 60%, rgba(0, 0, 0, 0) 100%); /* Gradient background */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .card-img-top-wrapper {
+        height: auto!important;
+    }
+    .card-body {
+        position: relative!important;
+    }
+    .card-body.px-5, .card-body.py-5 {
+        padding: 10px!important;
+    }
 }

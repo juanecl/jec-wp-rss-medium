@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: jec-medium\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-31 15:44+0000\n"
-"PO-Revision-Date: 2025-01-31 16:59+0000\n"
+"PO-Revision-Date: 2025-01-31 20:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: Español\n"
 "Language: es_ES\n"
@@ -27,7 +27,7 @@ msgstr ""
 
 #: templates/medium-feed-template.php:7
 msgid "Articles"
-msgstr "Artículos"
+msgstr "Fragmentos y Bits"
 
 #: includes/class-medium-widget.php:11
 msgid "Displays the latest posts from a Medium profile."
