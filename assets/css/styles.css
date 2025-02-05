@@ -58,8 +58,7 @@
 /* General Wrapper */
 .wrap {
     box-shadow: 1px 1px 15px inset rgba(0, 0, 0, .3);
-    margin-right: -12px;
-    margin-left: -12px;
+    width: 100%;
 }
 
 /* Carousel Item Card */
