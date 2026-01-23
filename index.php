@@ -3,7 +3,7 @@
 Plugin Name: jec-medium
 Plugin URI: https://github.com/juanecl/jec-wp-rss-medium
 Description: A plugin to display the latest posts from Medium using RSS feeds.
-Version: 1.0
+Version: 1.0.16
 Author: Juan Enrique Chomon Del Campo
 Author URI: https://www.juane.cl
 License: GPL2
@@ -15,6 +15,10 @@ Domain Path: /languages
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
+
+// Define plugin version
+define('JEC_MEDIUM_VERSION', '1.0.16');
+
 
 class JEC_Medium {
     private static $instance = null;
@@ -44,13 +48,16 @@ class JEC_Medium {
     private function includes() {
         require_once WMI_PLUGIN_DIR . 'includes/class-medium-rss-fetcher.php';
         require_once WMI_PLUGIN_DIR . 'includes/class-medium-widget.php';
+        require_once WMI_PLUGIN_DIR . 'includes/class-medium-customizer.php';
     }
 
     private function init_hooks() {
         add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts']);
         add_action('widgets_init', [$this, 'register_widget']);
-        add_action('admin_init', [$this, 'register_settings']);
         add_shortcode('jec-medium', [$this, 'medium_feed_shortcode']);
+        
+        // Initialize customizer
+        Medium_Customizer::init();
     }
 
     public function enqueue_scripts() {
@@ -63,24 +70,8 @@ class JEC_Medium {
         register_widget('MediumWidget');
     }
 
-    public function register_settings() {
-        add_settings_field(
-            'wmi_feed_url',
-            __('Medium Feed URL', 'jec-medium'),
-            [$this, 'feed_url_render'],
-            'general'
-        );
-
-        register_setting('general', 'wmi_feed_url', 'esc_url');
-    }
-
-    public function feed_url_render() {
-        $value = get_option('wmi_feed_url', '');
-        echo '<input type="url" id="wmi_feed_url" name="wmi_feed_url" value="' . esc_attr($value) . '" class="regular-text ltr" />';
-    }
-
     public function medium_feed_shortcode($atts) {
-        $feed_url = get_option('wmi_feed_url', '');
+        $feed_url = Medium_Customizer::get_feed_url();
         $fetcher = new Medium_RSS_Fetcher($feed_url);
         $posts = $fetcher->fetch_feed();
 

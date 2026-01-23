@@ -13,7 +13,7 @@ class MediumWidget extends WP_Widget {
     }
 
     public function widget($args, $instance) {
-        $feed_url = get_option('wmi_feed_url', '');
+        $feed_url = Medium_Customizer::get_feed_url();
         $fetcher = new Medium_RSS_Fetcher($feed_url);
         $posts = $fetcher->fetch_feed();
 

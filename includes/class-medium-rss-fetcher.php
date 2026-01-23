@@ -11,30 +11,89 @@ class Medium_RSS_Fetcher {
     }
 
     public function fetch_feed() {
-        $response = wp_remote_get($this->feed_url);
+        // Agregar headers apropiados para evitar que Medium devuelva HTML
+        $args = array(
+            'timeout' => 15,
+            'headers' => array(
+                'User-Agent' => 'Mozilla/5.0 (compatible; WordPress/' . get_bloginfo('version') . '; +' . get_bloginfo('url') . ')',
+                'Accept' => 'application/rss+xml, application/xml, text/xml, */*'
+            )
+        );
+
+        $response = wp_remote_get($this->feed_url, $args);
 
         if (is_wp_error($response)) {
             error_log('Error fetching feed: ' . $response->get_error_message());
             return [];
         }
 
+        // Verificar el código de respuesta HTTP
+        $response_code = wp_remote_retrieve_response_code($response);
+        if ($response_code !== 200) {
+            error_log('Error fetching feed: HTTP ' . $response_code);
+            return [];
+        }
+
         $body = wp_remote_retrieve_body($response);
+        
+        // Validar que el contenido no esté vacío
+        if (empty($body)) {
+            error_log('Error fetching feed: Empty response body');
+            return [];
+        }
+
+        // Validar que el contenido sea XML y no HTML
+        $content_type = wp_remote_retrieve_header($response, 'content-type');
+        $trimmed_body = trim($body);
+        
+        // Verificar si el contenido parece ser HTML en lugar de XML
+        if (stripos($trimmed_body, '<!DOCTYPE html') === 0 || 
+            stripos($trimmed_body, '<html') === 0 ||
+            (stripos($content_type, 'text/html') !== false)) {
+            error_log('Error fetching feed: Response is HTML instead of XML. URL may be incorrect or Medium blocked the request.');
+            error_log('Feed URL: ' . $this->feed_url);
+            error_log('Content-Type: ' . $content_type);
+            return [];
+        }
+
+        // Verificar que el contenido comience con XML
+        if (stripos($trimmed_body, '<?xml') !== 0 && stripos($trimmed_body, '<rss') !== 0) {
+            error_log('Error fetching feed: Content does not appear to be valid XML/RSS');
+            error_log('First 200 chars: ' . substr($trimmed_body, 0, 200));
+            return [];
+        }
+
         $this->parse_feed($body);
     }
 
     private function parse_feed($body) {
+        // Suprimir warnings de XML y capturar errores
+        libxml_use_internal_errors(true);
+        libxml_clear_errors();
+        
         $xml = simplexml_load_string($body, 'SimpleXMLElement', LIBXML_NOCDATA);
 
         if ($xml === false) {
+            $errors = libxml_get_errors();
+            $error_messages = [];
+            foreach ($errors as $error) {
+                $error_messages[] = trim($error->message) . ' (Line: ' . $error->line . ')';
+            }
+            libxml_clear_errors();
+            
             error_log('Error parsing feed: Invalid XML');
+            if (!empty($error_messages)) {
+                error_log('XML Errors: ' . implode('; ', $error_messages));
+            }
             return;
         }
 
         $items = $xml->channel->item;
         $count = 0;
+        $max_posts = Medium_Customizer::get_posts_count();
 
         foreach ($items as $item) {
-            if ($count >= 10) {
+            if ($count >= $max_posts) {
                 break;
             }
 

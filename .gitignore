@@ -47,3 +47,19 @@ wp-config.php
 #/wp-content/themes
 
 .history/
+.trunk/
+
+*.mo
+# Build files
+build/
+*.zip
+
+# Development files
+node_modules/
+vendor/
+.DS_Store
+*.bak
+
+# Environment files
+.env
+.env.*
