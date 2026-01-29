@@ -3,7 +3,7 @@
 Plugin Name: jec-medium
 Plugin URI: https://github.com/juanecl/jec-wp-rss-medium
 Description: A plugin to display the latest posts from Medium using RSS feeds.
-Version: 1.0.16
+Version: 1.0.28
 Author: Juan Enrique Chomon Del Campo
 Author URI: https://www.juane.cl
 License: GPL2
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Define plugin version
-define('JEC_MEDIUM_VERSION', '1.0.16');
+define('JEC_MEDIUM_VERSION', '1.0.28');
 
 
 class JEC_Medium {
