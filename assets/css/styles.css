@@ -77,6 +77,17 @@
     animation-delay: 120ms;
 }
 
+/* Card title link color */
+.custom-card .card-title a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.custom-card .card-title a:hover {
+    color: #f0f0f0;
+    text-decoration: underline;
+}
+
 /* General Wrapper */
 .wrap {
     box-shadow: 1px 1px 15px inset rgba(0, 0, 0, .3);
@@ -99,14 +110,15 @@
 /* Carousel Item Card */
 .carousel-item .card {
     overflow: hidden;
-    max-height: 500px;
+    max-height: 620px;
 }
 
 
 /* Card Image Wrapper */
 .card-img-top-wrapper {
     position: relative;
-    height: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
     overflow: hidden;
 }
 
@@ -115,13 +127,13 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: top;
+    object-position: center;
 }
 
 /* Custom Card */
 .custom-card {
     position: relative;
-    max-width: 75%;
+    max-width: 70%;
     margin: 0 auto;
     border: 3px solid var(--bs-secondary);
     box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.3);
@@ -130,15 +142,53 @@
     background-position: center;
 }
 
+@media (min-width: 768px) and (max-width: 1199.98px) {
+    .custom-card {
+        max-width: 80%;
+    }
+}
+
 /* Card Body */
 .carousel-item .card-body {
-    min-height: 40%;
     width: 100%;
     color: white;
-    padding: 20px;
+    padding: 16px;
     position: absolute;
     bottom: 0;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 60%, rgba(0, 0, 0, 0) 100%); /* Gradient background */
+}
+
+/* Ensure only title is visible */
+.custom-card .card-text {
+    display: none;
+}
+
+/* Two-up layout spacing */
+.medium-carousel-row {
+    margin: 0;
+    --bs-gutter-x: 0.75rem;
+    --bs-gutter-y: 0.75rem;
+}
+
+@media (min-width: 768px) {
+    .medium-col-left {
+        padding-left: 1.75rem;
+        padding-right: 0;
+    }
+    .medium-col-right {
+        padding-left: 0;
+        padding-right: 1.75rem;
+    }
+}
+
+@media (min-width: 768px) {
+    #mediumCarousel .carousel-inner {
+        padding: 0 3.25rem;
+    }
+    #mediumCarousel .carousel-control-prev,
+    #mediumCarousel .carousel-control-next {
+        width: 2.25rem;
+    }
 }
 
 /* Responsive Adjustments */
@@ -148,10 +198,11 @@
     }
     .card-img-top-wrapper {
         height: auto!important;
+        aspect-ratio: 16 / 9;
     }
     .card-img {
-        height: auto;
-        object-fit: contain;
+        height: 100%;
+        object-fit: cover;
         display: block;
     }
     .card-body {
